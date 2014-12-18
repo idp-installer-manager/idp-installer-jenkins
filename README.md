@@ -1,17 +1,12 @@
-idp-installer-jenkins Cookbook
-==============================
-TODO: Enter the cookbook description here.
-
-e.g.
-This cookbook makes your favorite breakfast sandwich.
+Jenkins for IdP Installer Cookbook
+==================================
+This cookbook installs and configures Jenkins for use with the IdP installer. It also installs and configures Apache2 as a reverse proxy to access Jenkins.
 
 Requirements
 ------------
-TODO: List your cookbook requirements. Be sure to include any requirements this cookbook has on platforms, libraries, other cookbooks, packages, operating systems, etc.
-
-e.g.
-#### packages
-- `toaster` - idp-installer-jenkins needs toaster to brown your bagel.
+### platforms
+- `Ubuntu 12.04+`
+- `CentOS 6+`
 
 Attributes
 ----------
@@ -51,18 +46,6 @@ Just include `idp-installer-jenkins` in your node's `run_list`:
 }
 ```
 
-Contributing
-------------
-TODO: (optional) If this is a public cookbook, detail the process for contributing. If this is a private cookbook, remove this section.
-
-e.g.
-1. Fork the repository on Github
-2. Create a named feature branch (like `add_component_x`)
-3. Write your change
-4. Write tests for your change (if applicable)
-5. Run the tests, ensuring they all pass
-6. Submit a Pull Request using Github
-
 License and Authors
 -------------------
-Authors: TODO: List authors
+Authors: Cameron Mann <cameron.mann@cybera.ca>

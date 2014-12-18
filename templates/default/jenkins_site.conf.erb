@@ -1,0 +1,11 @@
+<VirtualHost *:80>
+    ProxyRequests Off
+    <Proxy *>
+        Order deny,allow
+        Allow from all
+        Require all granted
+    </Proxy>
+    ProxyPass / http://localhost:<%= node[:jenkins][:master][:port] %>/ nocanon
+    ProxyPassReverse / http://localhost:<%= node[:jenkins][:master][:port] %>/
+    AllowEncodedSlashes NoDecode
+</VirtualHost>
