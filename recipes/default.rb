@@ -20,12 +20,18 @@ jenkins_plugin "config-file-provider"
 
 ldap_config = File.join(Chef::Config[:file_cache_path], 'ldap_config.xml')
 template ldap_config do
-  source "ldap_config.xml.erb"
+  source "config.xml.erb"
+  variables :partials => {
+    :builders => "ldap_builders.xml.erb"
+  }
 end
 
 cas_config = File.join(Chef::Config[:file_cache_path], 'cas_config.xml')
 template cas_config do
-  source "cas_config.xml.erb"
+  source "config.xml.erb"
+  variables :partials => {
+    :builders => "cas_builders.xml.erb"
+  }
 end
 
 jenkins_job "idp-installer-ldap" do

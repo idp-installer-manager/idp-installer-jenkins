@@ -1,0 +1,9 @@
+    <hudson.tasks.Shell>
+      <command>sudo sh -c &quot;echo &apos;<%= node[:idp_installer_jenkins][:ldap_ip] %> <%= node[:idp_installer_jenkins][:ldap_host] %>&apos; &gt;&gt; /etc/hosts&quot;
+sudo sed -i &apos;/^127.0.0.1/ s/$/ idp-test.shibtest.cybera.ca/&apos; /etc/hosts
+sudo -i $WORKSPACE/deploy_idp.sh</command>
+    </hudson.tasks.Shell>
+    <hudson.tasks.Shell>
+      <command>sleep 60
+curl -ks -X POST --data &quot;j_username=<%= node[:idp_installer_jenkins][:ldap_test_user] %>&amp;j_password=<%= node[:idp_installer_jenkins][:ldap_test_password] %>&quot; https://localhost:7443/idp/Authn/UserPassword | grep &quot;An error occurred while processing your request.&quot;</command>
+    </hudson.tasks.Shell>
