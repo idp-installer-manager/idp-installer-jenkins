@@ -17,18 +17,19 @@ end
 
 jenkins_plugin "github"
 jenkins_plugin "config-file-provider"
+jenkins_plugin "jclouds-jenkins"
 
-ldap_config = File.join(Chef::Config[:file_cache_path], 'ldap_config.xml')
+ldap_config = File.join(Chef::Config[:file_cache_path], "ldap_config.xml")
 template ldap_config do
-  source "config.xml.erb"
+  source "job_config.xml.erb"
   variables :partials => {
     :builders => "ldap_builders.xml.erb"
   }
 end
 
-cas_config = File.join(Chef::Config[:file_cache_path], 'cas_config.xml')
+cas_config = File.join(Chef::Config[:file_cache_path], "cas_config.xml")
 template cas_config do
-  source "config.xml.erb"
+  source "job_config.xml.erb"
   variables :partials => {
     :builders => "cas_builders.xml.erb"
   }

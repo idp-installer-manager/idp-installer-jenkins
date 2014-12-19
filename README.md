@@ -8,6 +8,10 @@ Requirements
 - `Ubuntu 12.04+`
 - `CentOS 6+`
 
+### environment
+- `Chef 11+`
+- `Ruby 1.9.3+`
+
 Attributes
 ----------
 TODO: List your cookbook attributes here.
