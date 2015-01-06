@@ -4,42 +4,58 @@ This cookbook installs and configures Jenkins for use with the IdP installer. It
 
 Requirements
 ------------
-### platforms
+### Platforms
 - `Ubuntu 12.04+`
 - `CentOS 6+`
 
-### environment
+### Environment
 - `Chef 11+`
 - `Ruby 1.9.3+`
 
 Attributes
 ----------
-TODO: List your cookbook attributes here.
-
-e.g.
 #### idp-installer-jenkins::default
 <table>
   <tr>
     <th>Key</th>
     <th>Type</th>
     <th>Description</th>
-    <th>Default</th>
   </tr>
   <tr>
-    <td><tt>['idp-installer-jenkins']['bacon']</tt></td>
-    <td>Boolean</td>
-    <td>whether to include bacon</td>
-    <td><tt>true</tt></td>
+    <td><tt>[:idp-installer-jenkins][:ldap_test_user]</tt></td>
+    <td>String</td>
+    <td>LDAP user for testing authentication</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:ldap_test_password]</tt></td>
+    <td>String</td>
+    <td>Password for LDAP user</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:cas_url]</tt></td>
+    <td>String</td>
+    <td>CAS URL from config</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:cas_login_url]</tt></td>
+    <td>String</td>
+    <td>CAS login URL from config</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:recipients]</tt></td>
+    <td>String</td>
+    <td>Space-delimited list of emails to receive build alerts</td>
   </tr>
 </table>
 
 Usage
 -----
-#### idp-installer-jenkins::default
-TODO: Write usage instructions for each cookbook.
+#### Install chef and knife-solo
+    gem install chef
+    gem install knife-solo
 
-e.g.
-Just include `idp-installer-jenkins` in your node's `run_list`:
+#### idp-installer-jenkins::default
+Include `idp-installer-jenkins` in your node's `run_list`:
 
 ```json
 {
@@ -49,6 +65,22 @@ Just include `idp-installer-jenkins` in your node's `run_list`:
   ]
 }
 ```
+
+### Post-install configuration
+Add your IdP installer configs to Jenkins:
+
+1. Click "Manage Jenkins"
+2. Click "Managed files"
+3. Add your CAS and LDAP configs to their corresponding entries under "Custom file"
+
+Add Jenkins webhook to your GitHub repository:
+
+1. Go to your GitHub repository
+2. Click "Settings"
+3. Click "Webhooks & Services"
+4. Click "Add Services"
+  1. Select "Jenkins (Git plugin)" from the list
+5. Enter `http://<your_jenkins_url>/github-webhook/` in the "Jenkins hook url" field
 
 License and Authors
 -------------------
