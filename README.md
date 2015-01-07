@@ -74,7 +74,7 @@ Configure jclouds:
 1. Click "Manage Jenkins"
 2. Click "Configure System"
 3. Scroll down to the "Clouds" section and fill in the following fields:
-  1. Identity (OpenStack user in the form <tenant>:<user>)
+  1. Identity (OpenStack user in the form `<tenant>:<user>`)
   2. Credential (OpenStack password)
 
 Add your IdP installer configs to Jenkins:
