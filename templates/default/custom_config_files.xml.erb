@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<org.jenkinsci.plugins.configfiles.custom.CustomConfigProvider plugin="config-file-provider@2.7.5">
+  <configs>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418841925421</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418841925421</id>
+        <name>IdP Installer - Integration test - CAS</name>
+        <comment></comment>
+        <content>from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as expect
+
+sp_url = &quot;https://sp-test.shibtest.cybera.ca:9443/secure&quot;
+driver = webdriver.Firefox()
+driver.get(sp_url)
+expect.title_contains(&quot;Central Authentication Service&quot;)
+driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;NetID&quot;)
+driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;NetID&quot;)
+driver.find_element_by_name(&quot;submit&quot;).click()
+assert driver.current_url == sp_url
+driver.quit()
+print(&quot;CAS authentication successful!&quot;)</content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418429106314</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418429106314</id>
+        <name>IdP Installer - relying-party.xml.diff</name>
+        <comment></comment>
+        <content>116a117,121
+&gt;       &lt;metadata:MetadataProvider id=&quot;URLMD4&quot; xsi:type=&quot;metadata:FilesystemMetadataProvider&quot;
+&gt;                       metadataFile=&quot;/opt/shibboleth-idp/metadata/sp-metadata.xml&quot;&gt;
+&gt;       &lt;/metadata:MetadataProvider&gt;
+&gt; 
+&gt; 
+</content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418080695436</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418080695436</id>
+        <name>CAS config</name>
+        <comment></comment>
+        <content></content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1417550615165</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1417550615165</id>
+        <name>LDAP config</name>
+        <comment></comment>
+        <content></content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+  </configs>
+</org.jenkinsci.plugins.configfiles.custom.CustomConfigProvider>

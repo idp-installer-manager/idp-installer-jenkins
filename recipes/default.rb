@@ -19,6 +19,10 @@ jenkins_plugin "github"
 jenkins_plugin "config-file-provider"
 jenkins_plugin "jclouds-jenkins"
 
+template "/var/lib/jenkins/config.xml" do
+  source "jenkins_config.xml.erb"
+end
+
 ldap_config = File.join(Chef::Config[:file_cache_path], "ldap_config.xml")
 template ldap_config do
   source "job_config.xml.erb"

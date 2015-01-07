@@ -15,7 +15,7 @@ sudo -i $WORKSPACE/deploy_idp.sh</command>
     </org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep>
     <hudson.tasks.Shell>
       <command>sudo /sbin/iptables -t nat -I OUTPUT -p tcp -o lo --dport 443 -j REDIRECT --to-ports 7443
-sudo wget --no-check-certificate https://localhost:9443/Shibboleth.sso/Metadata -O /opt/shibboleth-idp/metadata/sp-metadata.xml
+sudo wget --no-check-certificate https://localhost:<%= node[:idp_installer_jenkins][:sp_port] %>/Shibboleth.sso/Metadata -O /opt/shibboleth-idp/metadata/sp-metadata.xml
 sudo patch /opt/shibboleth-idp/conf/relying-party.xml &lt; relying-party.xml.diff
 sleep 60
 sudo /sbin/service tomcat6 restart

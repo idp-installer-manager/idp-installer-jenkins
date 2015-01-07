@@ -5,8 +5,8 @@ This cookbook installs and configures Jenkins for use with the IdP installer. It
 Requirements
 ------------
 ### Platforms
-- `Ubuntu 12.04+`
-- `CentOS 6+`
+- `Ubuntu 14.04`
+- `CentOS 7.x`
 
 ### Environment
 - `Chef 11+`
@@ -55,6 +55,8 @@ Usage
     gem install knife-solo
 
 #### idp-installer-jenkins::default
+First, configure the attributes specified above in `attributes/default.rb`.
+
 Include `idp-installer-jenkins` in your node's `run_list`:
 
 ```json
@@ -67,6 +69,14 @@ Include `idp-installer-jenkins` in your node's `run_list`:
 ```
 
 ### Post-install configuration
+Configure jclouds:
+
+1. Click "Manage Jenkins"
+2. Click "Configure System"
+3. Scroll down to the "Clouds" section and fill in the following fields:
+  1. Identity (OpenStack user in the form <tenant>:<user>)
+  2. Credential (OpenStack password)
+
 Add your IdP installer configs to Jenkins:
 
 1. Click "Manage Jenkins"
