@@ -42,19 +42,19 @@ when "centos"
 
   package "Xvfb"
   package "shibboleth.x86_64"
-
-  service "shibd" do
-    #supports :status => true, :start => true, :stop => true, :restart => true
-    action [ :enable, :start ]
-  end
-
-  web_app "shib" do
-    template "shib_site.conf.erb"
-  end
 when "ubuntu"
   package "shibboleth-sp2-schemas"
   package "libapache2-mod-shib2"
   package "xvfb"
+end
+
+service "shibd" do
+  #supports :status => true, :start => true, :stop => true, :restart => true
+  action [ :enable, :start ]
+end
+
+web_app "shib" do
+  template "shib_site.conf.erb"
 end
 
 package "git"
