@@ -28,27 +28,27 @@ Attributes
     <th>Description</th>
   </tr>
   <tr>
-    <td><tt>[:idp-installer-jenkins][:github_url]</tt></td>
+    <td><tt>[:idp_installer_jenkins][:github_url]</tt></td>
     <td>String</td>
     <td>URL to GitHub repository</td>
   </tr>
   <tr>
-    <td><tt>[:idp-installer-jenkins][:openstack_endpoint]</tt></td>
+    <td><tt>[:idp_installer_jenkins][:openstack_endpoint]</tt></td>
     <td>String</td>
     <td>URL to OpenStack Keystone endpoint</td>
   </tr>
   <tr>
-    <td><tt>[:idp-installer-jenkins][:centos6_image]</tt></td>
+    <td><tt>[:idp_installer_jenkins][:centos6_image]</tt></td>
     <td>String</td>
     <td>UUID of configured CentOS 6 image in OpenStack</td>
   </tr>
   <tr>
-    <td><tt>[:idp-installer-jenkins][:centos7_image]</tt></td>
+    <td><tt>[:idp_installer_jenkins][:centos7_image]</tt></td>
     <td>String</td>
     <td>UUID of configured CentOS 7 image in OpenStack</td>
   </tr>
   <tr>
-    <td><tt>[:idp-installer-jenkins][:ldap_test_user]</tt></td>
+    <td><tt>[:idp_installer_jenkins][:ldap_test_user]</tt></td>
     <td>String</td>
     <td>LDAP user for testing authentication</td>
   </tr>
@@ -76,9 +76,11 @@ Attributes
 
 Usage
 -----
-#### Install chef and knife-solo
-    gem install chef
-    gem install knife-solo
+#### Install dependencies
+    gem install chef knife-solo bundler
+    cd idp-installer-jenkins
+    bundle install
+    berks install
 
 #### idp-installer-jenkins::default
 First, configure the attributes specified above in `attributes/default.rb`.
