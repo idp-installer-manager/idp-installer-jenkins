@@ -1,12 +1,18 @@
 Jenkins for IdP Installer Cookbook
 ==================================
-This cookbook installs and configures Jenkins for use with the IdP installer. It also installs and configures Apache2 as a reverse proxy to access Jenkins.
+This cookbook installs and configures Jenkins for use with the IdP installer. The `default` recipe will install and configure the Jenkins master while the `slave` recipe will configure a slave for testing.
 
 Requirements
 ------------
-### Platforms
+### idp-installer-jenkins::default
+#### platforms
 - `Ubuntu 14.04`
 - `CentOS 7.x`
+
+### idp-installer-jenkins::slave
+#### platforms
+- `Ubuntu 14.04`
+- `CentOS 6.x/7.x`
 
 ### Environment
 - `Chef 11+`
@@ -20,6 +26,26 @@ Attributes
     <th>Key</th>
     <th>Type</th>
     <th>Description</th>
+  </tr>
+  <tr>
+    <td><tt>[:idp-installer-jenkins][:github_url]</tt></td>
+    <td>String</td>
+    <td>URL to GitHub repository</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp-installer-jenkins][:openstack_endpoint]</tt></td>
+    <td>String</td>
+    <td>URL to OpenStack Keystone endpoint</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp-installer-jenkins][:centos6_image]</tt></td>
+    <td>String</td>
+    <td>UUID of configured CentOS 6 image in OpenStack</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp-installer-jenkins][:centos7_image]</tt></td>
+    <td>String</td>
+    <td>UUID of configured CentOS 7 image in OpenStack</td>
   </tr>
   <tr>
     <td><tt>[:idp-installer-jenkins][:ldap_test_user]</tt></td>

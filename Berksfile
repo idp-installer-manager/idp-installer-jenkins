@@ -4,3 +4,5 @@ metadata
 
 cookbook "jenkins"
 cookbook "apache2"
+cookbook "yum"
+cookbook "selinux"
