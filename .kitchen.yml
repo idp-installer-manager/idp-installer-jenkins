@@ -12,11 +12,12 @@ platforms:
 
 suites:
   - name: default
-    includes:
-      - ubuntu-14.04
-      - centos-7.0
     run_list:
       - recipe[idp-installer-jenkins::default]
+    excludes:
+      - centos-6.6
   - name: slave
     run_list:
       - recipe[idp-installer-jenkins::slave]
+    excludes:
+      - ubuntu-14.04

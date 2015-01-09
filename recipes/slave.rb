@@ -11,7 +11,7 @@ include_recipe "apache2"
 case node[:platform]
 when "centos"
   include_recipe "yum"
-  include_recipe "selinux::disabled"
+  include_recipe "selinux::permissive"
 
   shib_url = "http://download.opensuse.org/repositories/security://shibboleth"
   epel_url = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-%s&arch=x86_64"
@@ -40,7 +40,7 @@ when "centos"
     action :create
   end
 
-  package "Xvfb"
+  package "xorg-x11-server-Xvfb"
   package "shibboleth.x86_64"
 when "ubuntu"
   package "shibboleth-sp2-schemas"

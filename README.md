@@ -11,7 +11,6 @@ Requirements
 
 ### idp-installer-jenkins::slave
 #### platforms
-- `Ubuntu 14.04`
 - `CentOS 6.x/7.x`
 
 ### Environment
