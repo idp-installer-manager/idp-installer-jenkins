@@ -11,5 +11,3 @@ default[:idp_installer_jenkins][:cas_url] = "http://cas-server.com:8080/cas-serv
 default[:idp_installer_jenkins][:cas_login_url] = "http://cas-server.com:8080/cas-server-webapp-3.5.2/login"
 
 default[:idp_installer_jenkins][:recipients] = "cameron.mann@cybera.ca"
-
-default[:idp_installer_jenkins][:sp_port] = 9443

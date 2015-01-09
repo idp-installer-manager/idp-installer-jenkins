@@ -7,10 +7,16 @@ provisioner:
 
 platforms:
   - name: ubuntu-14.04
-#  - name: centos-7.0
+  - name: centos-7.0
+  - name: centos-6.6
 
 suites:
   - name: default
+    includes:
+      - ubuntu-14.04
+      - centos-7.0
     run_list:
       - recipe[idp-installer-jenkins::default]
-    attributes:
+  - name: slave
+    run_list:
+      - recipe[idp-installer-jenkins::slave]

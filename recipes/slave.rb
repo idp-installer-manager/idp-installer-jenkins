@@ -48,9 +48,19 @@ when "ubuntu"
   package "xvfb"
 end
 
+hostsfile_entry "127.0.0.1" do
+  hostname "sp.caf-dev"
+  aliases [ "idp.caf-dev" ]
+  action :append
+end
+
 service "shibd" do
-  #supports :status => true, :start => true, :stop => true, :restart => true
-  action [ :enable, :start ]
+  action :enable
+end
+
+template "/etc/shibboleth/shibboleth2.xml" do
+  source "shibboleth2.xml.erb"
+  notifies :restart, "service[shibd]", :delayed
 end
 
 web_app "shib" do

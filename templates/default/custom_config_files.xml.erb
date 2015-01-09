@@ -10,7 +10,7 @@
         <content>from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as expect
 
-sp_url = &quot;https://sp-test.shibtest.cybera.ca:9443/secure&quot;
+sp_url = &quot;http://sp.caf-dev/secure&quot;
 driver = webdriver.Firefox()
 driver.get(sp_url)
 expect.title_contains(&quot;Central Authentication Service&quot;)
