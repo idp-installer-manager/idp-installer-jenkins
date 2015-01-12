@@ -119,6 +119,13 @@ Add Jenkins webhook to your GitHub repository:
   1. Select "Jenkins (Git plugin)" from the list
 5. Enter `http://<your_jenkins_url>/github-webhook/` in the "Jenkins hook url" field
 
+(Optional) Configure SMTP:
+
+1. Click "Manage Jenkins"
+2. Click "Configure System"
+3. Scroll down to the "E-mail Notification" section
+  1. Fill in the details for your SMTP server, click "Advanced..." for authentication details
+
 License and Authors
 -------------------
 Authors: Cameron Mann <cameron.mann@cybera.ca>
