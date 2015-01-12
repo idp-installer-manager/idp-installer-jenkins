@@ -1,5 +1,11 @@
 require 'spec_helper'
 
+if os[:family] == 'centos'
+  apache_dir = 'httpd'
+else
+  apache_dir = 'apache2'
+end
+
 describe host('sp.caf-dev') do
   it { should be_resolvable }
 end
@@ -8,7 +14,7 @@ describe host('idp.caf-dev') do
   it { should be_resolvable }
 end
 
-describe file('/etc/httpd/sites-enabled/shib.conf') do
+describe file("/etc/#{apache_dir}/sites-enabled/shib.conf") do
   it { should be_symlink }
 end
 
