@@ -1,6 +1,6 @@
 require 'spec_helper.rb'
 
-if os[:family] == 'centos'
+if os[:family] == 'redhat'
   apache_service = 'httpd'
 else
   apache_service = 'apache2'

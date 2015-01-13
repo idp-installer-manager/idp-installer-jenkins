@@ -1,6 +1,6 @@
 require 'spec_helper.rb'
 
-if os[:family] == 'centos'
+if os[:family] == 'redhat'
   shib_package = 'shibboleth.x86_64'
   xvfb_package = 'xorg-x11-server-Xvfb'
 else

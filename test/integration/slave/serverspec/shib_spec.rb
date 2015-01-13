@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-if os[:family] == 'centos'
+if os[:family] == 'redhat'
   apache_dir = 'httpd'
 else
   apache_dir = 'apache2'
