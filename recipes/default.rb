@@ -15,6 +15,8 @@ if node[:platform] == "centos"
   package "java-1.7.0-openjdk.x86_64"
 end
 
+package "git"
+
 include_recipe "jenkins::master"
 
 web_app "jenkins" do
