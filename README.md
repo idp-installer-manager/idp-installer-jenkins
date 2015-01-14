@@ -1,6 +1,8 @@
 Jenkins for IdP Installer Cookbook
 ==================================
-This cookbook installs and configures Jenkins for use with the IdP installer. The `default` recipe will install and configure the Jenkins master while the `slave` recipe will configure a slave for testing.
+This cookbook installs and configures Jenkins for use with the IdP installer. The `default` recipe will install and configure the Jenkins master while the `slave` recipe will configure a slave for testing. It's also assumed that Jenkins will be using OpenStack for provisioning slaves. If that's not the case, uninstall the JClouds plugin from Jenkins and configure another provisioning method or just change the provider if using a different cloud type.
+
+__WARNING: Security is NOT configured for the Jenkins master. Access should be restricted using another method (eg. OpenStack security groups) until security is manually configured.__
 
 Requirements
 ------------
@@ -81,21 +83,49 @@ Usage
     bundle install
     berks install
 
-#### idp-installer-jenkins::default
-First, configure the attributes specified above in `attributes/default.rb`.
+#### Prepare the target
+Use the following command to install Chef on the target host. It also accepts the `-i` option if you need to specify a private key.
 
-Include `idp-installer-jenkins` in your node's `run_list`:
+    knife solo prepare <user>@<host>
+
+This will also create `nodes/<host>.json` on your local machine which you will have to edit in the next step.
+
+#### Run Chef
+Include `idp-installer-jenkins::default` in your node's `run_list` to configure a Jenkins master:
 
 ```json
 {
   "name":"my_node",
   "run_list": [
-    "recipe[idp-installer-jenkins]"
+    "recipe[idp-installer-jenkins::default]"
   ]
 }
 ```
 
+Or include `idp-installer-jenkins::slave` to configure a Jenkins slave:
+
+```json
+{
+  "name":"my_node",
+  "run_list": [
+    "recipe[idp-installer-jenkins::slave]"
+  ]
+}
+```
+
+Now run the cookbook:
+
+    knife solo cook <user>@<host>
+
+The target host should now be configured. If it's a Jenkins master, continue with the post-install configuration below, otherwise you're done and a snapshot of the instance should be created in OpenStack.
+
 ### Post-install configuration
+Configure security:
+
+1. Click "Manage Jenkins"
+2. Click "Configure Global Security"
+3. Configure your preferred authentication and authorization methods.
+
 Configure jclouds:
 
 1. Click "Manage Jenkins"
