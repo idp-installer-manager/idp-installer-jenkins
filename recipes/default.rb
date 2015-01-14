@@ -9,6 +9,12 @@
 include_recipe "apache2"
 include_recipe "apache2::mod_proxy"
 include_recipe "apache2::mod_proxy_http"
+
+if node[:platform] == "centos"
+  include_recipe "selinux::permissive"
+  package "java-1.7.0-openjdk.x86_64"
+end
+
 include_recipe "jenkins::master"
 
 web_app "jenkins" do

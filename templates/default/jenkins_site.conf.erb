@@ -1,9 +1,12 @@
 <VirtualHost *:80>
     ProxyRequests Off
     <Proxy *>
+    <% if node[:apache][:version] == "2.2" -%>
         Order deny,allow
         Allow from all
+    <% else -%>
         Require all granted
+    <% end -%>
     </Proxy>
     ProxyPass / http://localhost:<%= node[:jenkins][:master][:port] %>/ nocanon
     ProxyPassReverse / http://localhost:<%= node[:jenkins][:master][:port] %>/
