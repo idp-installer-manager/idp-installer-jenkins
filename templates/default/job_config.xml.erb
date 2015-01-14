@@ -39,6 +39,7 @@
       <name>label</name>
       <values>
         <string>centos6</string>
+        <string>centos7</string>
       </values>
     </hudson.matrix.LabelAxis>
   </axes>
@@ -46,6 +47,13 @@
 <%= render @partials[:builders] %>
   </builders>
   <publishers>
+    <hudson.tasks.ArtifactArchiver>
+      <artifacts>status.log</artifacts>
+      <allowEmptyArchive>false</allowEmptyArchive>
+      <onlyIfSuccessful>false</onlyIfSuccessful>
+      <fingerprint>false</fingerprint>
+      <defaultExcludes>true</defaultExcludes>
+    </hudson.tasks.ArtifactArchiver>
     <hudson.tasks.Mailer plugin="mailer@1.12">
       <recipients><%= node[:idp_installer_jenkins][:recipients] %></recipients>
       <dontNotifyEveryUnstableBuild>false</dontNotifyEveryUnstableBuild>
