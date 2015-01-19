@@ -50,8 +50,8 @@ when "ubuntu"
 end
 
 hostsfile_entry "127.0.0.1" do
-  hostname "sp.caf-dev"
-  aliases [ "idp.caf-dev" ]
+  hostname "sp.caf-dev.ca"
+  aliases [ "idp.caf-dev.ca" ]
   action :append
 end
 

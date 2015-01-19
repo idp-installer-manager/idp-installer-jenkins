@@ -20,7 +20,7 @@
     -->
 
     <!-- The ApplicationDefaults element is where most of Shibboleth's SAML bits are defined. -->
-    <ApplicationDefaults entityID="http://sp.caf-dev/shibboleth"
+    <ApplicationDefaults entityID="http://sp.caf-dev.ca/shibboleth"
                          REMOTE_USER="eppn persistent-id targeted-id">
 
         <!--
@@ -41,7 +41,7 @@
             (Set discoveryProtocol to "WAYF" for legacy Shibboleth WAYF support.)
             You can also override entityID on /Login query string, or in RequestMap/htaccess.
             -->
-            <SSO entityID="https://idp.caf-dev/idp/shibboleth">
+            <SSO entityID="https://idp.caf-dev.ca/idp/shibboleth">
               SAML2 SAML1
             </SSO>
 

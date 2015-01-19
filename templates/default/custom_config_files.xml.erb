@@ -9,14 +9,16 @@
         <comment></comment>
         <content>from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as expect
+from selenium.webdriver.support.ui import WebDriverWait
 
-sp_url = &quot;http://sp.caf-dev/secure&quot;
+sp_url = &quot;http://sp.caf-dev.ca/secure&quot;
 driver = webdriver.Firefox()
 driver.get(sp_url)
-expect.title_contains(&quot;Central Authentication Service&quot;)
 driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;NetID&quot;)
 driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;NetID&quot;)
 driver.find_element_by_name(&quot;submit&quot;).click()
+WebDriverWait(driver, 5).until(expect.alert_is_present())
+driver.switch_to_alert().accept()
 assert driver.current_url == sp_url
 driver.quit()
 print(&quot;CAS authentication successful!&quot;)</content>
