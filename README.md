@@ -41,7 +41,7 @@ Attributes
   <tr>
     <td><tt>[:idp_installer_jenkins][:openstack_identity]</tt></td>
     <td>String</td>
-    <td>OpenStack identity in the form `tenant:user`</td>
+    <td>OpenStack identity in the form <tt>tenant:user</tt></td>
   </tr>
   <tr>
     <td><tt>[:idp_installer_jenkins][:openstack_credential]</tt></td>
