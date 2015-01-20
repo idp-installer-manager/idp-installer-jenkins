@@ -2,10 +2,12 @@ UseCanonicalName on
 UseCanonicalPhysicalPort on
 ServerName sp.caf-dev.ca
 
+<% if node[:platform] == "centos" -%>
 #
 # Load the Shibboleth module.
 #
 LoadModule mod_shib /usr/lib64/shibboleth/mod_shib_24.so
+<% end -%>
 
 #
 # Turn this on to support "require valid-user" rules from other
