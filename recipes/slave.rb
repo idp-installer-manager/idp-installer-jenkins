@@ -44,7 +44,6 @@ when "centos"
   package "shibboleth.x86_64"
 when "ubuntu"
   execute "apt-get update"
-  package "curl"
   package "libshibsp6"
   package "shibboleth-sp2-schemas"
   package "libapache2-mod-shib2"
@@ -77,6 +76,8 @@ web_app "shib" do
   template "shib_site.conf.erb"
 end
 
+package "curl"
+package "wget"
 package "git"
 package "firefox"
 package "python-pip"
