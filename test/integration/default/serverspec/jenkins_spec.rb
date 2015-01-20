@@ -15,3 +15,8 @@ end
 describe command('grep jclouds /var/lib/jenkins/config.xml') do
  its(:exit_status) { should eq 0 }
 end
+
+describe command('curl -f localhost') do
+  its(:exit_status) { should eq 0 }
+  its(:stdout) { should match /Dashboard \[Jenkins\]/ }
+end
