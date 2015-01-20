@@ -119,7 +119,6 @@ Include `idp-installer-jenkins::default` in your node's `run_list` to configure 
 
 ```json
 {
-  "name":"my_node",
   "run_list": [
     "recipe[idp-installer-jenkins::default]"
   ]
@@ -130,7 +129,6 @@ Or include `idp-installer-jenkins::slave` to configure a Jenkins slave:
 
 ```json
 {
-  "name":"my_node",
   "run_list": [
     "recipe[idp-installer-jenkins::slave]"
   ]
