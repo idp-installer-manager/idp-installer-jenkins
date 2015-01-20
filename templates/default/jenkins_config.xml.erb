@@ -18,8 +18,8 @@
   <clouds>
     <jenkins.plugins.jclouds.compute.JCloudsCloud plugin="jclouds-jenkins@2.8">
       <name>OpenStack</name>
-      <identity></identity>
-      <credential></credential>
+      <identity><%= node[:idp_installer_jenkins][:openstack_identity] %></identity>
+      <credential><%= node[:idp_installer_jenkins][:openstack_credential] %></credential>
       <providerName>openstack-nova</providerName>
       <privateKey></privateKey>
       <publicKey></publicKey>

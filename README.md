@@ -39,6 +39,16 @@ Attributes
     <td>URL to OpenStack Keystone endpoint</td>
   </tr>
   <tr>
+    <td><tt>[:idp_installer_jenkins][:openstack_identity]</tt></td>
+    <td>String</td>
+    <td>OpenStack identity in the form `tenant:user`</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:openstack_credential]</tt></td>
+    <td>String</td>
+    <td>OpenStack password</td>
+  </tr>
+  <tr>
     <td><tt>[:idp_installer_jenkins][:centos6_image]</tt></td>
     <td>String</td>
     <td>UUID of configured CentOS 6 image in OpenStack</td>
@@ -125,14 +135,6 @@ Configure security:
 1. Click "Manage Jenkins"
 2. Click "Configure Global Security"
 3. Configure your preferred authentication and authorization methods.
-
-Configure jclouds:
-
-1. Click "Manage Jenkins"
-2. Click "Configure System"
-3. Scroll down to the "Clouds" section and fill in the following fields:
-  1. Identity (OpenStack user in the form `<tenant>:<user>`)
-  2. Credential (OpenStack password)
 
 Add your IdP installer configs to Jenkins:
 

@@ -1,6 +1,5 @@
     <hudson.tasks.Shell>
-      <command>sudo sh -c &quot;echo &apos;<%= node[:idp_installer_jenkins][:ldap_ip] %> <%= node[:idp_installer_jenkins][:ldap_host] %>&apos; &gt;&gt; /etc/hosts&quot;
-sudo -i $WORKSPACE/deploy_idp.sh</command>
+      <command>sudo -i $WORKSPACE/deploy_idp.sh</command>
     </hudson.tasks.Shell>
     <hudson.tasks.Shell>
       <command>sleep 60

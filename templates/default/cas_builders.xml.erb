@@ -1,7 +1,5 @@
     <hudson.tasks.Shell>
-      <command>sudo sh -c &quot;echo &apos;<%= node[:idp_installer_jenkins][:ldap_ip] %> <%= node[:idp_installer_jenkins][:ldap_host] %>&apos; &gt;&gt; /etc/hosts&quot;
-sudo sh -c &quot;echo &apos;<%= node[:idp_installer_jenkins][:cas_ip] %> <%= node[:idp_installer_jenkins][:cas_host] %>&apos; &gt;&gt; /etc/hosts&quot;
-sudo -i $WORKSPACE/deploy_idp.sh</command>
+      <command>sudo -i $WORKSPACE/deploy_idp.sh</command>
     </hudson.tasks.Shell>
     <org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep plugin="config-file-provider@2.7.5">
       <managedFiles>
@@ -17,7 +15,7 @@ sudo -i $WORKSPACE/deploy_idp.sh</command>
 sudo wget --no-check-certificate http://localhost/Shibboleth.sso/Metadata -O /opt/shibboleth-idp/metadata/sp-metadata.xml
 sudo patch /opt/shibboleth-idp/conf/relying-party.xml &lt; relying-party.xml.diff
 sleep 60
-sudo /sbin/service tomcat6 restart
+sudo /sbin/service jetty restart
 sleep 60
 sudo wget --no-check-certificate https://localhost/idp/shibboleth -O /etc/shibboleth/partner-metadata.xml
 sudo /sbin/service shibd restart</command>
