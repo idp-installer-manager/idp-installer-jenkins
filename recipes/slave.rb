@@ -55,6 +55,13 @@ hostsfile_entry "127.0.0.1" do
   action :append
 end
 
+node[:idp_installer_jenkins][:hosts].each do |ip,host|
+  hostsfile_entry ip do
+    hostname host
+    action :append
+  end
+end
+
 service "shibd" do
   action :enable
 end

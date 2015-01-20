@@ -85,6 +85,20 @@ Attributes
   </tr>
 </table>
 
+#### idp-installer-jenkins::slave
+<table>
+  <tr>
+    <th>Key</th>
+    <th>Type</th>
+    <th>Description</th>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:hosts]</tt></td>
+    <td>Hash</td>
+    <td>Additional entries for <tt>/etc/hosts</tt> if required</td>
+  </tr>
+</table>
+
 Usage
 -----
 #### Install dependencies
