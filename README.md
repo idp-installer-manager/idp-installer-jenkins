@@ -138,11 +138,8 @@ Configure security:
 
 Configure OpenStack keypair:
 
-1. Generate an SSH key pair either through the OpenStack dashboard (Access & Security -> Key Pairs) or the `ssh-keygen` command
-2. Put the private key in `/var/lib/jenkins/.ssh/id_rsa`, then
-    1. `sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/id_rsa && sudo chmod 600 /var/lib/jenkins/.ssh/id_rsa`
-3. Put the private and public keys in their respective fields in Jenkins (Manage Jenkins -> Configure System, under Cloud)
-4. Import the public key in the OpenStack dashboard if the key pair was generated elsewhere (make sure to use the region and user that match the jclouds configuration)
+1. Generate an SSH key pair through the OpenStack dashboard (Access & Security -> Key Pairs)
+2. Put the private and public keys in their respective fields in Jenkins (Manage Jenkins -> Configure System, under Cloud)
 
 Add your IdP installer configs to Jenkins:
 
