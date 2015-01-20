@@ -136,6 +136,13 @@ Configure security:
 2. Click "Configure Global Security"
 3. Configure your preferred authentication and authorization methods.
 
+Configure OpenStack keypair:
+
+1. Generate an SSH key pair either through the OpenStack dashboard (Access & Security -> Key Pairs) or the `ssh-keygen` command
+2. Put the private key in `/var/lib/jenkins/.ssh/id_rsa`, then
+    1. `sudo chown jenkins:jenkins /var/lib/jenkins/.ssh/id_rsa && sudo chmod 600 /var/lib/jenkins/.ssh/id_rsa`
+3. Import the public key in the OpenStack dashboard if the key pair was genereated elsewhere 
+
 Add your IdP installer configs to Jenkins:
 
 1. Click "Manage Jenkins"
