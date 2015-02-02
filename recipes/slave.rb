@@ -48,6 +48,7 @@ when "ubuntu"
   package "shibboleth-sp2-schemas"
   package "libapache2-mod-shib2"
   package "xvfb"
+  execute "shib-keygen"
 end
 
 hostsfile_entry "127.0.0.1" do
