@@ -59,6 +59,11 @@ Attributes
     <td>UUID of configured CentOS 7 image in OpenStack</td>
   </tr>
   <tr>
+    <td><tt>[:idp_installer_jenkins][:ubuntu1404_image]</tt></td>
+    <td>String</td>
+    <td>UUID of configured Ubuntu 14.04 image in OpenStack</td>
+  </tr>
+  <tr>
     <td><tt>[:idp_installer_jenkins][:ldap_test_user]</tt></td>
     <td>String</td>
     <td>LDAP user for testing authentication</td>

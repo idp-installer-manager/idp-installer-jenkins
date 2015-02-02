@@ -11,14 +11,13 @@
       </managedFiles>
     </org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep>
     <hudson.tasks.Shell>
-      <command>sudo /sbin/iptables -t nat -I OUTPUT -p tcp -o lo --dport 443 -j REDIRECT --to-ports 7443
+      <command>PATH=/sbin:$PATH sudo iptables -t nat -I OUTPUT -p tcp -o lo --dport 443 -j REDIRECT --to-ports 7443
 sudo wget --no-check-certificate http://localhost/Shibboleth.sso/Metadata -O /opt/shibboleth-idp/metadata/sp-metadata.xml
 sudo patch /opt/shibboleth-idp/conf/relying-party.xml &lt; relying-party.xml.diff
-sleep 60
-sudo /sbin/service jetty restart
-sleep 60
+PATH=/sbin:$PATH sudo service jetty restart
+sleep 500
 sudo wget --no-check-certificate https://localhost/idp/shibboleth -O /etc/shibboleth/partner-metadata.xml
-sudo /sbin/service shibd restart</command>
+PATH=/sbin:$PATH sudo service shibd restart</command>
     </hudson.tasks.Shell>
     <org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep plugin="config-file-provider@2.7.5">
       <managedFiles>
@@ -30,7 +29,5 @@ sudo /sbin/service shibd restart</command>
       </managedFiles>
     </org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep>
     <hudson.tasks.Shell>
-      <command>sudo yum install python-pip -y
-sudo pip install selenium
-xvfb-run python test_cas.py</command>
+      <command>xvfb-run python test_cas.py</command>
     </hudson.tasks.Shell>

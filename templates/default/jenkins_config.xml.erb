@@ -29,6 +29,36 @@
       <instanceCap>4</instanceCap>
       <templates>
         <jenkins.plugins.jclouds.compute.JCloudsSlaveTemplate>
+          <name>ubuntu1404</name>
+          <imageId><%= node[:idp_installer_jenkins][:ubuntu1404_image] %></imageId>
+          <hardwareId></hardwareId>
+          <cores>1.0</cores>
+          <ram>1024</ram>
+          <osFamily></osFamily>
+          <labelString>ubuntu1404</labelString>
+          <description></description>
+          <osVersion></osVersion>
+          <userData>#cloud-config
+disable_root: 0</userData>
+          <numExecutors>1</numExecutors>
+          <stopOnTerminate>false</stopOnTerminate>
+          <vmUser>root</vmUser>
+          <preInstalledJava>false</preInstalledJava>
+          <preExistingJenkinsUser>false</preExistingJenkinsUser>
+          <jenkinsUser>jenkins</jenkinsUser>
+          <fsRoot>/jenkins</fsRoot>
+          <allowSudo>true</allowSudo>
+          <installPrivateKey>false</installPrivateKey>
+          <overrideRetentionTime>0</overrideRetentionTime>
+          <spoolDelayMs>0</spoolDelayMs>
+          <delayLockObject/>
+          <assignFloatingIp>false</assignFloatingIp>
+          <keyPairName>Jenkins</keyPairName>
+          <assignPublicIp>false</assignPublicIp>
+          <networks></networks>
+          <securityGroups></securityGroups>
+        </jenkins.plugins.jclouds.compute.JCloudsSlaveTemplate>
+        <jenkins.plugins.jclouds.compute.JCloudsSlaveTemplate>
           <name>centos6</name>
           <imageId><%= node[:idp_installer_jenkins][:centos6_image] %></imageId>
           <hardwareId></hardwareId>
