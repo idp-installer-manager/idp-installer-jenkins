@@ -51,17 +51,17 @@ Attributes
   <tr>
     <td><tt>[:idp_installer_jenkins][:centos6_image]</tt></td>
     <td>String</td>
-    <td>UUID of configured CentOS 6 image in OpenStack</td>
+    <td>OpenStack CentOS 6 image in the form <tt>region/uuid</tt></td>
   </tr>
   <tr>
     <td><tt>[:idp_installer_jenkins][:centos7_image]</tt></td>
     <td>String</td>
-    <td>UUID of configured CentOS 7 image in OpenStack</td>
+    <td>OpenStack CentOS 7 image in the form <tt>region/uuid</tt></td>
   </tr>
   <tr>
     <td><tt>[:idp_installer_jenkins][:ubuntu1404_image]</tt></td>
     <td>String</td>
-    <td>UUID of configured Ubuntu 14.04 image in OpenStack</td>
+    <td>OpenStack Ubuntu 14.04 image in the form <tt>region/uuid</tt></td>
   </tr>
   <tr>
     <td><tt>[:idp_installer_jenkins][:ldap_test_user]</tt></td>
