@@ -119,6 +119,19 @@ Use the following command to install Chef on the target host. It also accepts th
 
 This will also create `nodes/<host>.json` on your local machine which you will have to edit in the next step.
 
+#### Configure attributes
+See the `Attributes` section above for details on what each setting does. They can either be modified directly through the appropriate files in `attributes/` or overriden through the JSON file created in the previous step. Eg.
+
+```json
+{
+  "default_attributes": {
+    "idp_installer_jenkins": {
+      "github_url": "https://github.com/cybera"
+    }
+  }
+}
+```
+
 #### Run Chef
 Include `idp-installer-jenkins::default` in your node's `run_list` to configure a Jenkins master:
 
@@ -170,7 +183,7 @@ Add Jenkins webhook to your GitHub repository:
 2. Click "Settings"
 3. Click "Webhooks & Services"
 4. Click "Add Services"
-  1. Select "Jenkins (Git plugin)" from the list
+  1. Select "Jenkins (GitHub plugin)" from the list
 5. Enter `http://<your_jenkins_url>/github-webhook/` in the "Jenkins hook url" field
 
 (Optional) Configure SMTP:
