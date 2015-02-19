@@ -11,7 +11,7 @@
 from selenium.webdriver.support import expected_conditions as expect
 from selenium.webdriver.support.ui import WebDriverWait
 
-sp_url = &quot;http://sp.caf-dev.ca/secure&quot;
+sp_url = &quot;https://sp.caf-dev.ca:9443/secure&quot;
 driver = webdriver.Firefox()
 driver.get(sp_url)
 driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;NetID&quot;)

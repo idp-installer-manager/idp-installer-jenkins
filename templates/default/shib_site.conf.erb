@@ -2,49 +2,70 @@ UseCanonicalName on
 UseCanonicalPhysicalPort on
 ServerName sp.caf-dev.ca
 
-<% if node[:platform] == "centos" -%>
-#
-# Load the Shibboleth module.
-#
-LoadModule mod_shib /usr/lib64/shibboleth/mod_shib_24.so
-<% end -%>
+<VirtualHost *:9443>
+  #
+  # Enable SSL
+  #
+  SSLEngine on
+  SSLCertificateFile <%= @params[:cert_path] %>
+  SSLCertificateKeyFile <%= @params[:key_path] %>
 
-#
-# Turn this on to support "require valid-user" rules from other
-# mod_authn_* modules, and use "require shib-session" for anonymous
-# session-based authorization in mod_shib.
-#
-ShibCompatValidUser Off
+  <FilesMatch "\.(cgi|shtml|phtml|php)$">
+    SSLOptions +StdEnvVars
+  </FilesMatch>
+  <Directory /usr/lib/cgi-bin>
+    SSLOptions +StdEnvVars
+  </Directory>
 
-#
-# Ensures handler will be accessible.
-#
-<Location /Shibboleth.sso>
-  AuthType None
-  Require all granted
-</Location>
+  BrowserMatch "MSIE [2-6]" \
+    nokeepalive ssl-unclean-shutdown \
+    downgrade-1.0 force-response-1.0
+  BrowserMatch "MSIE [17-9]" ssl-unclean-shutdown
 
-#
-# Used for example style sheet in error templates.
-#
-<IfModule mod_alias.c>
-  <Location /shibboleth-sp>
+  <% if node[:platform] == "centos" -%>
+  #
+  # Load the Shibboleth module.
+  #
+  LoadModule mod_shib /usr/lib64/shibboleth/mod_shib_24.so
+  <% end -%>
+
+  #
+  # Turn this on to support "require valid-user" rules from other
+  # mod_authn_* modules, and use "require shib-session" for anonymous
+  # session-based authorization in mod_shib.
+  #
+  ShibCompatValidUser Off
+
+  #
+  # Ensures handler will be accessible.
+  #
+  <Location /Shibboleth.sso>
     AuthType None
     Require all granted
   </Location>
-  Alias /shibboleth-sp/main.css /usr/share/shibboleth/main.css
-</IfModule>
 
-#
-# Configure the module for content.
-#
-# You MUST enable AuthType shibboleth for the module to process
-# any requests, and there MUST be a require command as well. To
-# enable Shibboleth but not specify any session/access requirements
-# use "require shibboleth".
-#
-<Location /secure>
-  AuthType shibboleth
-  ShibRequestSetting requireSession 1
-  require shib-session
-</Location>
+  #
+  # Used for example style sheet in error templates.
+  #
+  <IfModule mod_alias.c>
+    <Location /shibboleth-sp>
+      AuthType None
+      Require all granted
+    </Location>
+    Alias /shibboleth-sp/main.css /usr/share/shibboleth/main.css
+  </IfModule>
+
+  #
+  # Configure the module for content.
+  #
+  # You MUST enable AuthType shibboleth for the module to process
+  # any requests, and there MUST be a require command as well. To
+  # enable Shibboleth but not specify any session/access requirements
+  # use "require shibboleth".
+  #
+  <Location /secure>
+    AuthType shibboleth
+    ShibRequestSetting requireSession 1
+    require shib-session
+  </Location>
+</VirtualHost>
