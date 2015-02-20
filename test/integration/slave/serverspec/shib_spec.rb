@@ -22,7 +22,7 @@ describe command('grep idp\.caf-dev\.ca /etc/shibboleth/shibboleth2.xml') do
   its(:exit_status) { should eq 0 }
 end
 
-describe command('curl -f localhost/Shibboleth.sso/Metadata') do
+describe command('curl -fk https://localhost:9443/Shibboleth.sso/Metadata') do
   its(:exit_status) { should eq 0 }
   its(:stdout) { should match /sp\.caf-dev\.ca/ }
 end
