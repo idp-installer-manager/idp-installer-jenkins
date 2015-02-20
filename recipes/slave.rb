@@ -6,8 +6,6 @@
 #
 # All rights reserved - Do Not Redistribute
 #
-include_recipe "apache2"
-include_recipe "apache2::mod_ssl"
 
 case node[:platform]
 when "centos"
@@ -72,6 +70,9 @@ when "ubuntu"
     execute "make-ssl-cert generate-default-snakeoil --force-overwrite"
   end
 end
+
+include_recipe "apache2"
+include_recipe "apache2::mod_ssl"
 
 hostsfile_entry "127.0.0.1" do
   hostname "sp.caf-dev.ca"
