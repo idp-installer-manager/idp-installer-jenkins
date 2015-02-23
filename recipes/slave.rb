@@ -6,12 +6,16 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+if node[:platform] == "centos"
+  include_recipe "selinux::permissive"
+end
+
 include_recipe "apache2"
+include_recipe "apache2::mod_ssl"
 
 case node[:platform]
 when "centos"
   include_recipe "yum"
-  include_recipe "selinux::permissive"
 
   shib_url = "http://download.opensuse.org/repositories/security://shibboleth"
   epel_url = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-%s&arch=x86_64"
@@ -42,13 +46,35 @@ when "centos"
 
   package "xorg-x11-server-Xvfb"
   package "shibboleth.x86_64"
+  
+  cert_path = "/etc/pki/tls/certs/ssl-cert-snakeoil.pem"
+  key_path = "/etc/pki/tls/private/ssl-cert-snakeoil.key"
+
+  if not File.exist?(cert_path)
+    execute "/etc/pki/tls/certs/make-dummy-cert dummy"
+    execute "csplit dummy /^$/"
+    execute "mv xx00 #{key_path}"
+    execute "mv xx01 #{cert_path}"
+    execute "rm -f dummy"
+  end
 when "ubuntu"
   execute "apt-get update"
   package "libshibsp6"
   package "shibboleth-sp2-schemas"
   package "libapache2-mod-shib2"
   package "xvfb"
-  execute "shib-keygen"
+  package "ssl-cert"
+
+  if not File.exist?("/etc/shibboleth/sp-cert.pem")
+    execute "shib-keygen"
+  end
+
+  cert_path = "/etc/ssl/certs/ssl-cert-snakeoil.pem"
+  key_path = "/etc/ssl/private/ssl-cert-snakeoil.key"
+
+  if not File.exist?(cert_path)
+    execute "make-ssl-cert generate-default-snakeoil --force-overwrite"
+  end
 end
 
 hostsfile_entry "127.0.0.1" do
@@ -75,6 +101,8 @@ end
 
 web_app "shib" do
   template "shib_site.conf.erb"
+  cert_path cert_path
+  key_path key_path
 end
 
 package "curl"
@@ -83,6 +111,4 @@ package "git"
 package "firefox"
 package "python-pip"
 
-execute "selenium" do
-  command "pip install selenium"
-end
+execute "pip install selenium"
