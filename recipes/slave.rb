@@ -6,11 +6,16 @@
 #
 # All rights reserved - Do Not Redistribute
 #
+if node[:platform] == "centos"
+  include_recipe "selinux::permissive"
+end
+
+include_recipe "apache2"
+include_recipe "apache2::mod_ssl"
 
 case node[:platform]
 when "centos"
   include_recipe "yum"
-  include_recipe "selinux::permissive"
 
   shib_url = "http://download.opensuse.org/repositories/security://shibboleth"
   epel_url = "http://mirrors.fedoraproject.org/mirrorlist?repo=epel-%s&arch=x86_64"
@@ -58,6 +63,7 @@ when "ubuntu"
   package "shibboleth-sp2-schemas"
   package "libapache2-mod-shib2"
   package "xvfb"
+  package "ssl-cert"
 
   if not File.exist?("/etc/shibboleth/sp-cert.pem")
     execute "shib-keygen"
@@ -70,9 +76,6 @@ when "ubuntu"
     execute "make-ssl-cert generate-default-snakeoil --force-overwrite"
   end
 end
-
-include_recipe "apache2"
-include_recipe "apache2::mod_ssl"
 
 hostsfile_entry "127.0.0.1" do
   hostname "sp.caf-dev.ca"
