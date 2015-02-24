@@ -107,10 +107,12 @@ Attributes
 Usage
 -----
 #### Install dependencies
-    gem install chef knife-solo bundler
-    cd idp-installer-jenkins
-    bundle install
+
+    gem install chef knife-solo berkshelf
+    cd path/to/idp-installer-jenkins
     berks install
+
+The `berks install` step downloads all cookbook dependencies found in `Berksfile`.
 
 #### Prepare the target
 Use the following command to install Chef on the target host. It also accepts the `-i` option if you need to specify a private key.
@@ -192,6 +194,32 @@ Add Jenkins webhook to your GitHub repository:
 2. Click "Configure System"
 3. Scroll down to the "E-mail Notification" section
   1. Fill in the details for your SMTP server, click "Advanced..." for authentication details
+
+CONTRIBUTING
+------------
+This cookbook uses Test Kitchen (http://kitchen.ci/) and Serverspec (http://serverspec.org/) for testing. Test Kitchen offers various commands to deploy virtual machines and run recipes and tests. The default configuration in `.kitchen.yml` uses Vagrant (https://www.vagrantup.com/) for provisioning. This can be overridden by creating `.kitchen.local.yml` and overriding the driver. See the Test Kitchen documentation for more details.
+
+Other than Vagrant, all dependencies for development can be installed by running the following commands:
+
+    gem install chef bundler
+    cd path/to/idp-installer-jenkins
+    bundle install
+    berks install
+
+The `bundle` (http://bundler.io/) and `berks` (http://berkshelf.com/) commands download all dependencies found in `Gemfile` and `Berksfile` respectively. If dependencies change, these files must be modified accordingly. Cookbook dependency changes must also be reflected in `metadata.rb`.
+
+Once all dependencies are installed, you can start using Test Kitchen. Here's a sample of the available commands:
+
+    kitchen           # See all available commands
+    kitchen converge  # Run recipes
+    kitchen create    # Create instance(s) but don't run anything
+    kitchen destroy   # Destroy instance(s)
+    kitchen login     # SSH into instance
+    kitchen setup     # Create instance(s) and run recipes
+    kitchen test      # Create instance(s), run recipes, run tests and destroy
+    kitchen verify    # Run tests
+    
+In Test Kitchen parlance an instance corresponds to a virtual machine. Most commands will default to running all suites on all platforms from `.kitchen.yml` unless passed an argument. To run a specific suite on all platforms use either `default` or `slave`. To run a specific suite on a specific platform use `<suite>-<platform>`, for example `default-ubuntu-1404`.
 
 License and Authors
 -------------------
