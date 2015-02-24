@@ -2,10 +2,6 @@
 # Cookbook Name:: idp-installer-jenkins
 # Recipe:: slave
 #
-# Copyright 2014, Cybera, Inc.
-#
-# All rights reserved - Do Not Redistribute
-#
 if node[:platform] == "centos"
   include_recipe "selinux::permissive"
 end
