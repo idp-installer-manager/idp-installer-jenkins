@@ -1,13 +1,7 @@
-idp-installer-jenkins CHANGELOG
-===============================
-
-This file is used to list changes made in each version of the idp-installer-jenkins cookbook.
-
+CHANGELOG
+=========
 0.1.0
 -----
-- [your_name] - Initial release of idp-installer-jenkins
-
-- - -
-Check the [Markdown Syntax Guide](http://daringfireball.net/projects/markdown/syntax) for help with Markdown.
-
-The [Github Flavored Markdown page](http://github.github.com/github-flavored-markdown/) describes the differences between markdown on github and standard markdown.
+- Initial release of idp-installer-jenkins
+- Default recipe to deploy Jenkins on Ubuntu 14.04 and CentOS 7.x
+- Slave recipe to deploy Shibboleth SP and other testing dependencies on Ubuntu 14.04, CentOS 6.6 and CentOS 7.x
