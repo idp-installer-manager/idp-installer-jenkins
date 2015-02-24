@@ -13,7 +13,7 @@ Requirements
 
 ### idp-installer-jenkins::slave
 #### platforms
-- `CentOS 6.x/7.x`
+- `CentOS 6.6/7.x`
 
 ### Environment
 - `Chef 11+`
