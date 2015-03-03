@@ -34,6 +34,26 @@ Attributes
     <td>URL to GitHub repository</td>
   </tr>
   <tr>
+    <td><tt>[:idp_installer_jenkins][:v2_rel_branch]</tt></td>
+    <td>String</td>
+    <td>Git release branch for v2. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v2_dev_branch]</tt></td>
+    <td>String</td>
+    <td>Git development branch for v2. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v3_rel_branch]</tt></td>
+    <td>String</td>
+    <td>Git release branch for v3. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v3_dev_branch]</tt></td>
+    <td>String</td>
+    <td>Git development branch for v3. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
     <td><tt>[:idp_installer_jenkins][:openstack_endpoint]</tt></td>
     <td>String</td>
     <td>URL to OpenStack Keystone endpoint</td>
