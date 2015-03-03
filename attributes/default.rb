@@ -14,6 +14,9 @@ default[:idp_installer_jenkins][:centos7_image] = "quebec/92ab167a-f28f-4ed2-9c4
 default[:idp_installer_jenkins][:ldap_test_user] = "user"
 default[:idp_installer_jenkins][:ldap_test_password] = "password"
 
+default[:idp_installer_jenkins][:cas_test_user] = "NetID"
+default[:idp_installer_jenkins][:cas_test_password] = "NetID"
+
 default[:idp_installer_jenkins][:cas_url] = "http://cas.caf-dev.ca:8080/cas-server-webapp-3.5.2"
 default[:idp_installer_jenkins][:cas_login_url] = "http://cas.caf-dev.ca:8080/cas-server-webapp-3.5.2/login"
 

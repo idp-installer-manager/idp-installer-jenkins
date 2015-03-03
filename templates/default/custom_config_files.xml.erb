@@ -53,8 +53,8 @@ sp_url = &quot;https://sp.caf-dev.ca:9443/secure&quot;
 driver = webdriver.Firefox()
 driver.get(sp_url)
 expect.title_contains(&quot;Central Authentication Service&quot;)
-driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;NetID&quot;)
-driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;NetID&quot;)
+driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_user] %>&quot;)
+driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_password] %>&quot;)
 driver.find_element_by_name(&quot;submit&quot;).click()
 driver.find_element_by_name(&quot;_eventId_proceed&quot;).click()
 assert driver.current_url == sp_url
@@ -75,8 +75,8 @@ sp_url = &quot;https://sp.caf-dev.ca:9443/secure&quot;
 driver = webdriver.Firefox()
 driver.get(sp_url)
 expect.title_contains(&quot;Central Authentication Service&quot;)
-driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;NetID&quot;)
-driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;NetID&quot;)
+driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_user] %>&quot;)
+driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_password] %>&quot;)
 driver.find_element_by_name(&quot;submit&quot;).click()
 assert driver.current_url == sp_url
 driver.quit()

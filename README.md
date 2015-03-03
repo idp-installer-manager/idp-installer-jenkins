@@ -94,6 +94,16 @@ Attributes
     <td>Password for LDAP user</td>
   </tr>
   <tr>
+    <td><tt>[:idp_installer_jenkins][:cas_test_user]</tt></td>
+    <td>String</td>
+    <td>CAS user for testing authentication</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:cas_test_password]</tt></td>
+    <td>String</td>
+    <td>Password for CAS user</td>
+  </tr>
+  <tr>
     <td><tt>[:idp_installer_jenkins][:cas_url]</tt></td>
     <td>String</td>
     <td>CAS URL from config</td>
@@ -238,7 +248,7 @@ Once all dependencies are installed, you can start using Test Kitchen. Here's a 
     kitchen setup     # Create instance(s) and run recipes
     kitchen test      # Create instance(s), run recipes, run tests and destroy
     kitchen verify    # Run tests
-    
+
 In Test Kitchen parlance an instance corresponds to a virtual machine. Most commands will default to running all suites on all platforms from `.kitchen.yml` unless passed an argument. To run a specific suite on all platforms use either `default` or `slave`. To run a specific suite on a specific platform use `<suite>-<platform>`, for example `default-ubuntu-1404`.
 
 License and Authors
