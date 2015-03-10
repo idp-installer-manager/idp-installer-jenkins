@@ -1,0 +1,24 @@
+    <hudson.tasks.Shell>
+      <command>sudo -i $WORKSPACE/deploy_idp.sh</command>
+    </hudson.tasks.Shell>
+    <org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep plugin="config-file-provider@2.7.5">
+      <managedFiles>
+        <org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+          <fileId>org.jenkinsci.plugins.configfiles.custom.CustomConfig1421182662175</fileId>
+          <targetLocation>metadata-providers.xml.diff</targetLocation>
+          <variable></variable>
+        </org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+      </managedFiles>
+    </org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep>
+    <hudson.tasks.Shell>
+      <command>PATH=/sbin:$PATH sudo iptables -t nat -I OUTPUT -p tcp -o lo --dport 443 -j REDIRECT --to-ports 7443
+sudo wget --no-check-certificate https://localhost:9443/Shibboleth.sso/Metadata -O /opt/shibboleth-idp/metadata/sp-metadata.xml
+sudo patch /opt/shibboleth-idp/conf/metadata-providers.xml &lt; metadata-providers.xml.diff
+sudo chown jetty /opt/shibboleth-idp/conf/metadata-providers.xml
+sleep 60
+PATH=/sbin:$PATH sudo service jetty restart
+sleep 300
+sudo wget --no-check-certificate https://localhost/idp/shibboleth -O /tmp/partner-metadata.xml
+sudo sh -c &quot;tail -n +3 /tmp/partner-metadata.xml &gt; /etc/shibboleth/partner-metadata.xml&quot;
+PATH=/sbin:$PATH sudo service shibd restart</command>
+    </hudson.tasks.Shell>

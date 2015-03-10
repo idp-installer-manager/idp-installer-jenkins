@@ -13,7 +13,7 @@ Requirements
 
 ### idp-installer-jenkins::slave
 #### platforms
-- `CentOS 6.6/7.x`
+- `CentOS 6.x/7.x`
 
 ### Environment
 - `Chef 11+`
@@ -32,6 +32,26 @@ Attributes
     <td><tt>[:idp_installer_jenkins][:github_url]</tt></td>
     <td>String</td>
     <td>URL to GitHub repository</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v2_rel_branch]</tt></td>
+    <td>String</td>
+    <td>Git release branch for v2. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v2_dev_branch]</tt></td>
+    <td>String</td>
+    <td>Git development branch for v2. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v3_rel_branch]</tt></td>
+    <td>String</td>
+    <td>Git release branch for v3. If empty related jobs will not be created.</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:v3_dev_branch]</tt></td>
+    <td>String</td>
+    <td>Git development branch for v3. If empty related jobs will not be created.</td>
   </tr>
   <tr>
     <td><tt>[:idp_installer_jenkins][:openstack_endpoint]</tt></td>
@@ -72,6 +92,16 @@ Attributes
     <td><tt>[:idp_installer_jenkins][:ldap_test_password]</tt></td>
     <td>String</td>
     <td>Password for LDAP user</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:cas_test_user]</tt></td>
+    <td>String</td>
+    <td>CAS user for testing authentication</td>
+  </tr>
+  <tr>
+    <td><tt>[:idp_installer_jenkins][:cas_test_password]</tt></td>
+    <td>String</td>
+    <td>Password for CAS user</td>
   </tr>
   <tr>
     <td><tt>[:idp_installer_jenkins][:cas_url]</tt></td>
@@ -218,7 +248,7 @@ Once all dependencies are installed, you can start using Test Kitchen. Here's a 
     kitchen setup     # Create instance(s) and run recipes
     kitchen test      # Create instance(s), run recipes, run tests and destroy
     kitchen verify    # Run tests
-    
+
 In Test Kitchen parlance an instance corresponds to a virtual machine. Most commands will default to running all suites on all platforms from `.kitchen.yml` unless passed an argument. To run a specific suite on all platforms use either `default` or `slave`. To run a specific suite on a specific platform use `<suite>-<platform>`, for example `default-ubuntu-1404`.
 
 License and Authors

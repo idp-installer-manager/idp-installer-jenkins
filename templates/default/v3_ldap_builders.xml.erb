@@ -1,0 +1,13 @@
+<%= render "v3_common_builders.xml.erb" %>
+    <org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep plugin="config-file-provider@2.7.5">
+      <managedFiles>
+        <org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+          <fileId>org.jenkinsci.plugins.configfiles.custom.CustomConfig1421182021936</fileId>
+          <targetLocation>test_ldap.py</targetLocation>
+          <variable></variable>
+        </org.jenkinsci.plugins.configfiles.buildwrapper.ManagedFile>
+      </managedFiles>
+    </org.jenkinsci.plugins.configfiles.builder.ConfigFileBuildStep>
+    <hudson.tasks.Shell>
+      <command>xvfb-run python test_ldap.py</command>
+    </hudson.tasks.Shell>

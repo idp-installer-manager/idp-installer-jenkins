@@ -6,6 +6,8 @@ if node[:platform] == "centos"
   include_recipe "selinux::permissive"
 end
 
+node.override[:apache][:listen_ports] = [ 9443 ]
+
 include_recipe "apache2"
 include_recipe "apache2::mod_ssl"
 
@@ -42,7 +44,7 @@ when "centos"
 
   package "xorg-x11-server-Xvfb"
   package "shibboleth.x86_64"
-  
+
   cert_path = "/etc/pki/tls/certs/ssl-cert-snakeoil.pem"
   key_path = "/etc/pki/tls/private/ssl-cert-snakeoil.key"
 

@@ -2,33 +2,101 @@
 <org.jenkinsci.plugins.configfiles.custom.CustomConfigProvider plugin="config-file-provider@2.7.5">
   <configs>
     <entry>
-      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418841925421</string>
+      <string><%= node[:idp_installer_jenkins][:v3_ldap_config] %></string>
       <org.jenkinsci.lib.configprovider.model.Config>
-        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418841925421</id>
-        <name>IdP Installer - Integration test - CAS</name>
+        <id><%= node[:idp_installer_jenkins][:v3_ldap_config] %></id>
+        <name>v3 LDAP config</name>
+        <comment></comment>
+        <content></content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string><%= node[:idp_installer_jenkins][:v3_cas_config] %></string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id><%= node[:idp_installer_jenkins][:v3_cas_config] %></id>
+        <name>v3 CAS config</name>
+        <comment></comment>
+        <content></content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1421182021936</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1421182021936</id>
+        <name>v3 LDAP test</name>
         <comment></comment>
         <content>from selenium import webdriver
 from selenium.webdriver.support import expected_conditions as expect
-from selenium.webdriver.support.ui import WebDriverWait
 
 sp_url = &quot;https://sp.caf-dev.ca:9443/secure&quot;
 driver = webdriver.Firefox()
 driver.get(sp_url)
-driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;NetID&quot;)
-driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;NetID&quot;)
+driver.find_element_by_name(&quot;j_username&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:ldap_test_user] %>&quot;)
+driver.find_element_by_name(&quot;j_password&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:ldap_test_password] %>&quot;)
+driver.find_element_by_name(&quot;_eventId_proceed&quot;).click()
+driver.find_element_by_name(&quot;_eventId_proceed&quot;).click()
+assert driver.current_url == sp_url
+driver.quit()
+print(&quot;LDAP authentication successful!&quot;)</content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1425322050011</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1425322050011</id>
+        <name>v3 CAS test</name>
+        <comment></comment>
+        <content>from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as expect
+
+sp_url = &quot;https://sp.caf-dev.ca:9443/secure&quot;
+driver = webdriver.Firefox()
+driver.get(sp_url)
+expect.title_contains(&quot;Central Authentication Service&quot;)
+driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_user] %>&quot;)
+driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_password] %>&quot;)
 driver.find_element_by_name(&quot;submit&quot;).click()
-WebDriverWait(driver, 5).until(expect.alert_is_present())
-driver.switch_to_alert().accept()
+driver.find_element_by_name(&quot;_eventId_proceed&quot;).click()
 assert driver.current_url == sp_url
 driver.quit()
 print(&quot;CAS authentication successful!&quot;)</content>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
     <entry>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418841925421</string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418841925421</id>
+        <name>v2 CAS test</name>
+        <comment></comment>
+        <content>from selenium import webdriver
+from selenium.webdriver.support import expected_conditions as expect
+
+sp_url = &quot;https://sp.caf-dev.ca:9443/secure&quot;
+driver = webdriver.Firefox()
+driver.get(sp_url)
+expect.title_contains(&quot;Central Authentication Service&quot;)
+driver.find_element_by_name(&quot;username&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_user] %>&quot;)
+driver.find_element_by_name(&quot;password&quot;).send_keys(&quot;<%= node[:idp_installer_jenkins][:cas_test_password] %>&quot;)
+driver.find_element_by_name(&quot;submit&quot;).click()
+assert driver.current_url == sp_url
+driver.quit()
+print(&quot;CAS authentication successful!&quot;)</content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
+      <string><%= node[:idp_installer_jenkins][:v2_cas_config] %></string>
+      <org.jenkinsci.lib.configprovider.model.Config>
+        <id><%= node[:idp_installer_jenkins][:v2_cas_config] %></id>
+        <name>v2 CAS config</name>
+        <comment></comment>
+        <content></content>
+      </org.jenkinsci.lib.configprovider.model.Config>
+    </entry>
+    <entry>
       <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418429106314</string>
       <org.jenkinsci.lib.configprovider.model.Config>
         <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418429106314</id>
-        <name>IdP Installer - relying-party.xml.diff</name>
+        <name>v2 relying-party.xml.diff</name>
         <comment></comment>
         <content>116a117,121
 &gt;       &lt;metadata:MetadataProvider id=&quot;URLMD4&quot; xsi:type=&quot;metadata:FilesystemMetadataProvider&quot;
@@ -40,19 +108,22 @@ print(&quot;CAS authentication successful!&quot;)</content>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
     <entry>
-      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418080695436</string>
+      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1421182662175</string>
       <org.jenkinsci.lib.configprovider.model.Config>
-        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1418080695436</id>
-        <name>CAS config</name>
+        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1421182662175</id>
+        <name>v3 metadata-providers.xml.diff</name>
         <comment></comment>
-        <content></content>
+        <content>118a119,120
+&gt;         &lt;MetadataProvider id=&quot;URLMDTest&quot; xsi:type=&quot;FilesystemMetadataProvider&quot; metadataFile=&quot;/opt/shibboleth-idp/metadata/sp-metadata.xml&quot;/&gt;
+&gt; 
+</content>
       </org.jenkinsci.lib.configprovider.model.Config>
     </entry>
     <entry>
-      <string>org.jenkinsci.plugins.configfiles.custom.CustomConfig1417550615165</string>
+      <string><%= node[:idp_installer_jenkins][:v2_ldap_config] %></string>
       <org.jenkinsci.lib.configprovider.model.Config>
-        <id>org.jenkinsci.plugins.configfiles.custom.CustomConfig1417550615165</id>
-        <name>LDAP config</name>
+        <id><%= node[:idp_installer_jenkins][:v2_ldap_config] %></id>
+        <name>v2 LDAP config</name>
         <comment></comment>
         <content></content>
       </org.jenkinsci.lib.configprovider.model.Config>
