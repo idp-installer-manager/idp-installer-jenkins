@@ -19,6 +19,5 @@ sleep 60
 PATH=/sbin:$PATH sudo service jetty restart
 sleep 300
 sudo wget --no-check-certificate https://localhost/idp/shibboleth -O /tmp/partner-metadata.xml
-sudo sh -c &quot;tail -n +3 /tmp/partner-metadata.xml &gt; /etc/shibboleth/partner-metadata.xml&quot;
 PATH=/sbin:$PATH sudo service shibd restart</command>
     </hudson.tasks.Shell>
